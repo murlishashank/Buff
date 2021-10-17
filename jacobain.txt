@@ -1,0 +1,26 @@
+import numpy as py
+from numpy.linalg import inv
+import sympy as s
+
+def f1(y1, y2, y3):
+	return (-0.04*y1 + e4*y2*y3)
+
+def f2(y1, y2, y3):
+	return (0.04*y1 - e4*y2*y3 - pow(3.10,7)*pow(y2,2))
+
+def f3(y1, y2, y3):
+	return (pow(3.10,7)*pow(y2,2))
+
+variables = s.symbols(['y1 y2 y3'])
+function = s.sympify(['-0.04*y1 + e4*y2*y3','0.04*y1 - e4*y2*y3 - pow(3.10,7)*pow(y2,2)','pow(3.10,7)*pow(y2,2)'])
+
+def Jacobian(y1,y2,y3):
+
+	j = s.zeros(len(functions),len(variables))
+
+	for a, b in enumerate(functions):
+		for c, d in enumerate(variables):
+
+			j[a,c] = s.diff(b,d)
+
+	return j
